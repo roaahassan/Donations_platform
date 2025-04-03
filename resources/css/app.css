@@ -1,0 +1,8 @@
+/* filepath: c:\xampp\htdocs\Donations_platform\resources\css\app.css */
+/* Import Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Your custom styles */
+body {
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
