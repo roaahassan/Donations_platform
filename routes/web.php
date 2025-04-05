@@ -34,5 +34,4 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
     Route::resource('needs', NeedController::class);
     // Route for updating the collected amount
     Route::post('needs/{need}/update-collected-amount', [NeedController::class, 'updateCollectedAmount'])->name('needs.updateCollectedAmount');
-//     // Route::get('/admin/needs', [NeedController::class, 'index'])->name('needs.index');
 });

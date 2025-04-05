@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية - منصة التبرعات</title>
+    <title>الصفحة الرئيسية - منصة سواعد</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
@@ -66,20 +66,20 @@
             <li><a href="#">اتصل بنا</a></li>
         </ul>
         <div class="auth-links">
-            <a href="#">انشاء حساب</a>
-            <a href="#">تسجيل الدخول</a>
+            <a href="{{ route('register') }}">انشاء حساب</a>
+            <a href="{{ route('login') }}">تسجيل الدخول</a>
         </div>
     </header>
 </head>
     <header style="background-color: #4CAF50; color: white; padding: 1rem 0; text-align: center;">
-        <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo">
+        {{-- <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo"> --}}
     <header style="background-color: #4CAF50; color: white; padding: 1rem 0; text-align: center;">
-        <h1>مرحبًا بكم في منصة التبرعات</h1>
+        <h1>مرحبًا بكم في منصة سواعد للتبرعات</h1>
     </header>
     <main style="padding: 2rem;">
         <section style="margin-bottom: 2rem;">
             <h2 style="border-bottom: 2px solid #4CAF50; padding-bottom: 0.5rem;">من نحن</h2>
-            <p>نحن ملتزمون بمساعدة المحتاجين من خلال التبرعات السخية.</p>
+            <p>نحن ملتزمون بمساعدة المحتاجين من خلال التبرعات السخية</p>
         </section>
         <section>
             <h2 style="border-bottom: 2px solid #4CAF50; padding-bottom: 0.5rem;">التبرعات الأخيرة</h2>
@@ -88,17 +88,17 @@
                 <ul style="list-style-type: none; padding: 0;">
                     @foreach($donations as $donation)
                         <li style="background-color: #fff; margin-bottom: 0.5rem; padding: 1rem; border: 1px solid #ddd; border-radius: 5px;">
-                            {{ $donation->name }} تبرع بمبلغ ${{ $donation->amount }}
+                            {{ $donation->name }} تبرع بمبلغ ج{{ $donation->amount }}
                         </li>
                     @endforeach
                 </ul>
             @else
-                <p>لا توجد تبرعات حديثة.</p>
+                <p>لا توجد تبرعات حديثة</p>
             @endif
-        </section>
+        </section>      
     </main>
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem 0; position: fixed; width: 100%; bottom: 0;">
-        <p>&copy; {{ date('Y') }} منصة التبرعات. جميع الحقوق محفوظة.</p>
+        <p>&copy; {{ date('Y') }} .منصة سواعد جميع الحقوق محفوظة  </p>
     </footer>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

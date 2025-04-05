@@ -41,4 +41,6 @@ class RegisterController extends Controller
         // Redirect to a specific route
         return redirect()->route('home')->with('success', 'Account created successfully.');
     }
+
+    
 }

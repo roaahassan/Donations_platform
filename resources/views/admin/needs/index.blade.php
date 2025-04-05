@@ -60,12 +60,12 @@
             <thead>
                 <tr>
                     <th>العنوان</th>
-                    <th>الوصف</th>
+                    {{-- <th>الوصف</th> --}}
                     <th>حالة الحوجة</th>
                     <th>المبلغ المطلوب</th>
                     <th>المبلغ المجمع</th>
                     <th>أولوية الحوجة</th>
-                    <th>فئة الحوجة</th>
+                    {{-- <th>فئة الحوجة</th> --}}
                     <th>الإجراءات</th>
                 </tr>
             </thead>
@@ -73,12 +73,12 @@
                 @forelse ($needs as $need)
                     <tr>
                         <td>{{ $need->title }}</td>
-                        <td>{{ Str::limit($need->description, 50) }}</td>
+                        {{-- <td>{{ Str::limit($need->description, 50) }}</td> --}}
                         <td>{{ $need->need_status }}</td>
                         <td>{{ $need->amount }}</td>
                         <td>{{ $need->collected_amount }}</td>
                         <td>{{ $need->isUrgent ? 'عاجلة' : 'غير عاجلة' }}</td>
-                        <td>{{ $need->category }}</td>
+                        {{-- <td>{{ $need->category }}</td> --}}
                         <td>
                             <a href="{{ route('needs.show', $need->id) }}" class="btn btn-info btn-sm btn-block mb-1">تفاصيل</a>
                             <a href="{{ route('needs.edit', $need->id) }}" class="btn btn-warning btn-sm btn-block mb-1">تعديل</a>

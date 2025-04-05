@@ -14,4 +14,7 @@ class Notification extends Model
         'message',
         'is_read'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
