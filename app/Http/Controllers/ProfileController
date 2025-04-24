@@ -1,0 +1,32 @@
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Auth;
+
+class ProfileController extends Controller
+{
+    public function index()
+    {
+        // جلب الإشعارات الخاصة بالمستخدم الحالي
+        $notifications = Auth::user()->notifications()->latest()->get();
+
+        return view('profile.index', compact('notifications'));
+    }
+
+    public function update(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . auth()->id(),
+    ]);
+
+    $user = auth()->user();
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->route('profile')->with('success', 'تم تحديث البيانات الشخصية بنجاح.');
+}
+
+}

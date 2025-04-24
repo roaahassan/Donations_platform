@@ -77,14 +77,14 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
+    {{-- <div class="navbar">
         <a href="#">شعار</a>
         <a href="#">طلب مشاريعنا</a>
         <a href="#">عن الجمعية</a>
         <a href="#">اتصل بنا</a>
         <a href="{{ route('register') }}">إنشاء حساب</a>
         <a href="#">تسجيل دخول</a>
-    </div>
+    </div> --}}
 
     <div class="container">
         <h1>إنشاء حساب جديد</h1>

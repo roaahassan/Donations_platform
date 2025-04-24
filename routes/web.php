@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\NeedController;
+// use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\Admin\NotificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +31,9 @@ Route::post('/login', [LoginController::class,'login']);
 Route::get('/logout', [LogoutController::class, 'showLogoutButton'])->name('logout');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+
 // admin routes
 
 // مسارات إدارة الحوجات
@@ -34,4 +41,14 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
     Route::resource('needs', NeedController::class);
     // Route for updating the collected amount
     Route::post('needs/{need}/update-collected-amount', [NeedController::class, 'updateCollectedAmount'])->name('needs.updateCollectedAmount');
+    //مسارات ادارة التبرعات
+    Route::resource('donations', DonationController::class);
+    Route::post('donations/{id}/confirm', [DonationController::class, 'confirm'])->name('donations.confirm');
+    Route::post('donations/reject', [DonationController::class, 'reject'])->name('donations.reject');
+
+
 });
+
+// notifications
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" dir="rtl">
-        <h2 class="text-center mb-4">إدارة الحوجات الميدانية</h2>
+        <h2 class="text-center mt-4 mb-4">إدارة الحوجات الميدانية</h2>
         <a href="{{ route('needs.create') }}" class="btn btn-primary mb-3">إضافة حوجة جديدة</a>
         
         <!-- عرض رسالة النجاح -->
