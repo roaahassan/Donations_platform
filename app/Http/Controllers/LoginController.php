@@ -25,7 +25,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             // Check if the user is an admin
             if (Auth::user()->role === 'admin') {
-                return redirect()->route('needs.index')->with('success', 'تم تسجيل الدخول بنجاح.');
+                return redirect()->route('admin.dashboard')->with('success', 'تم تسجيل الدخول بنجاح.');
             }
 
             // Redirect to the home page for regular users

@@ -59,7 +59,7 @@
                     </td>
                     <td>
                         @if ($donation->receipt_path)
-                            <a href="{{ asset($donation->receipt) }}" target="_blank" class="btn btn-info btn-sm">عرض الإيصال</a>
+                            <a href="{{ asset($donation->receipt_path) }}" target="_blank" class="btn btn-info btn-sm">عرض الإيصال</a>
                         @else
                             <span>لا يوجد إيصال</span>
                         @endif
@@ -78,6 +78,11 @@
                     <td colspan="7">لا توجد تبرعات لعرضها</td>
                 </tr>
             @endforelse
+            @empty
+                <tr>
+                    <td colspan="7">لا توجد تبرعات لعرضها</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
@@ -88,27 +93,33 @@
 </div>
 
 <!-- نافذة المراجعة -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+<div class="modal fade" id="reviewModal{{ $donation->id }}" tabindex="-1" aria-labelledby="reviewModalLabel{{$donation->id}}" aria-hidden="true" inert>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">مراجعة التبرع</h5>
+                <h5 class="modal-title" id="reviewModalLabel{{$donation->id}}">مراجعة التبرع</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- محتوى المراجعة -->
-                <p>تفاصيل التبرع ستظهر هنا...</p>
+                <p id="donationDetails">
+                    <strong>رقم التبرع:</strong> <span id="donationId">-</span><br>
+                    <strong>اسم المتبرع:</strong> <span id="donorName">-</span><br>
+                    <strong>مبلغ التبرع:</strong> <span id="donationAmount">-</span><br>
+                    <strong>تاريخ التبرع:</strong> <span id="donationDate">-</span><br>
+                    <strong>حالة التبرع:</strong> <span id="donationStatus">-</span><br>
+                </p>
             </div>
         </div>
     </div>
 </div>
 
 <!-- نافذة الرفض -->
-<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+<div class="modal fade" id="rejectModal{{ $donation->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $donation->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="rejectModalLabel">رفض التبرع</h5>
+                <h5 class="modal-title" id="rejectModalLabel{{$donation->id}}">رفض التبرع</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -126,18 +137,38 @@
     </div>
 </div>
 
-<script>
-    function openReviewModal(donationId) {
-        // فتح نافذة المراجعة
-        const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-        modal.show();
+<!-- Include Bootstrap JS and dependencies -->
+{{-- <script>
+    window.openReviewModal = function(donationId) {
+        // Fetch donation details and open the review modal
+        fetch(`{{ route('donations.show', '') }}/${donationId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('donationId').textContent = data.id || '-';
+                document.getElementById('donorName').textContent = data.user_name || 'مجهول';
+                document.getElementById('donationAmount').textContent = data.amount || '-';
+                document.getElementById('donationDate').textContent = data.date || '-';
+                document.getElementById('donationStatus').textContent = data.status || '-';
+                const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+                modal.show();
+            })
+            .catch(error => {
+                document.getElementById('donationDetails').innerHTML = 'حدث خطأ أثناء جلب تفاصيل التبرع.';
+            });
     }
 
     function openRejectModal(donationId) {
-        // فتح نافذة الرفض
+        // Open the reject modal and set the donation ID
         document.getElementById('rejectDonationId').value = donationId;
+        document.querySelector('#rejectModal .modal-title').innerHTML = `رفض التبرع رقم ${donationId}`;
         const modal = new bootstrap.Modal(document.getElementById('rejectModal'));
         modal.show();
+    }
+</script> --}}
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script>
+    if (typeof bootstrap === 'undefined') {
+        console.error('Bootstrap is not defined. Ensure the bootstrap.bundle.min.js file is correctly loaded.');
     }
 </script>
 @endsection

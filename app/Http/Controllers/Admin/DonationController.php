@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Models\Need;
 use App\Models\Donation;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AdminMiddleware;
+
+
 
 class DonationController extends Controller {
     
@@ -34,6 +36,23 @@ public function index(Request $request) {
     $donations = $query->paginate(10);
 
     return view('admin.donations.index', compact('donations'));
+}
+
+
+public function show($id) {
+    $donation = Donation::with('user')->find($id);
+
+    if (!$donation) {
+        return response()->json(['error' => 'Donation not found'], 404);
+    }
+
+    return response()->json([
+        'id' => $donation->id,
+        'user_name' => $donation->user ? $donation->user->name : 'مجهول',
+        'amount' => $donation->amount,
+        'date' => $donation->created_at->format('Y-m-d'),
+        'status' => $donation->status,
+    ]);
 }
 
 public function confirm($id)
@@ -72,7 +91,11 @@ public function confirm($id)
 
 public function reject(Request $request)
 {
-    $donation = Donation::findOrFail($request->donation_id);
+    $validatedData = $request->validate([
+        'donation_id' => 'required|exists:donations,id',
+    ]);
+
+    $donation = Donation::findOrFail($validatedData['donation_id']);
     $donation->status = 'rejected';
     $donation->rejection_reason = $request->reason;
     $donation->save();

@@ -23,7 +23,7 @@ class DonationSeeder extends Seeder
             'need_id' => $need->id,
             'status' => 'pending',
             'amount' => 100.00,
-            'receipt' => 'path/to/receipt.jpg',
+            'receipt' => 'default/receipt/path.jpg',
         ]);
     }
 }

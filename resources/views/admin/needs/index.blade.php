@@ -74,7 +74,21 @@
                     <tr>
                         <td>{{ $need->title }}</td>
                         {{-- <td>{{ Str::limit($need->description, 50) }}</td> --}}
-                        <td>{{ $need->need_status }}</td>
+                        <td>
+                            @switch($need->need_status)
+                                @case('open')
+                                    مفتوحة
+                                    @break
+                                @case('not complite')
+                                    غير مكتملة
+                                    @break
+                                @case('complite')
+                                    مكتملة
+                                    @break
+                                @default
+                                    غير معروفة
+                            @endswitch
+                        </td>
                         <td>{{ $need->amount }}</td>
                         <td>{{ $need->collected_amount }}</td>
                         <td>{{ $need->isUrgent ? 'عاجلة' : 'غير عاجلة' }}</td>
@@ -97,12 +111,8 @@
             </tbody>
         </table>
 
-        <div class="mt-4">
-            {{ $needs->links() }}
-        </div>
-
     <div class="mt-4">
-        {{ $needs->links() }}
+        {{ $needs->links('pagination::bootstrap-5') }}
     </div>
 
     <!-- JavaScript لإعادة تعيين الحقل -->
