@@ -1,16 +1,19 @@
 <?php
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+class AdminProfileController extends Controller
 {
     public function index()
     {
         // جلب الإشعارات الخاصة بالمستخدم الحالي
         $notifications = Auth::user()->notifications()->latest()->get();
 
-        return view('profile.index', compact('notifications'));
+        return view('admin.profile', compact('notifications'));
     }
 
     public function update(Request $request)
@@ -31,4 +34,8 @@ class ProfileController extends Controller
 }
 
 }
+
+
+
+
 

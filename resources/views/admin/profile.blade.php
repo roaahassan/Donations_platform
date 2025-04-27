@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container" dir="rtl">
@@ -8,6 +8,29 @@
     <div class="card mb-4">
         <div class="card-header">تعديل البيانات الشخصية</div>
         <div class="card-body">
+            <form action="{{ route('profile.update') }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="name" class="form-label">الاسم</label>
+                <input type="text" id="name" class="form-control" value="{{ auth()->user()->name }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">كلمة المرور الجديدة</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            </form>
+        </div>
+        {{-- <div class="card-body">
             <form action="{{ route('profile.update') }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -21,7 +44,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
             </form>
-        </div>
+        </div> --}}
     </div>
 
     <!-- عرض الإشعارات -->
@@ -72,7 +95,7 @@
 </div>
 
     <!-- تسجيل الخروج -->
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header">تسجيل الخروج</div>
         <div class="card-body">
             <form action="{{ route('logout') }}" method="POST">
@@ -80,6 +103,6 @@
                 <button type="submit" class="btn btn-danger">تسجيل الخروج</button>
             </form>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

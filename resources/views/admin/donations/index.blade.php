@@ -65,7 +65,7 @@
                         @endif
                     </td>
                     <td>
-                        <button class="btn btn-primary btn-sm" onclick="openReviewModal({{ $donation->id }})">مراجعة</button>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#reviewModal{{ $donation->id }}">مراجعة</button>
                         <form action="{{ route('donations.confirm', $donation->id) }}" method="POST" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-success btn-sm">تأكيد</button>
@@ -73,11 +73,6 @@
                         <button class="btn btn-danger btn-sm" onclick="openRejectModal({{ $donation->id }})">رفض</button>
                     </td>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="7">لا توجد تبرعات لعرضها</td>
-                </tr>
-            @endforelse
             @empty
                 <tr>
                     <td colspan="7">لا توجد تبرعات لعرضها</td>
@@ -93,7 +88,7 @@
 </div>
 
 <!-- نافذة المراجعة -->
-<div class="modal fade" id="reviewModal{{ $donation->id }}" tabindex="-1" aria-labelledby="reviewModalLabel{{$donation->id}}" aria-hidden="true" inert>
+<div class="modal fade" id="reviewModal{{ $donation->id }}" tabindex="-1" aria-labelledby="reviewModalLabel{{ $donation->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -102,12 +97,20 @@
             </div>
             <div class="modal-body">
                 <!-- محتوى المراجعة -->
-                <p id="donationDetails">
-                    <strong>رقم التبرع:</strong> <span id="donationId">-</span><br>
-                    <strong>اسم المتبرع:</strong> <span id="donorName">-</span><br>
-                    <strong>مبلغ التبرع:</strong> <span id="donationAmount">-</span><br>
-                    <strong>تاريخ التبرع:</strong> <span id="donationDate">-</span><br>
-                    <strong>حالة التبرع:</strong> <span id="donationStatus">-</span><br>
+                <p>
+                    <strong>رقم التبرع:</strong> {{ $donation->id }}<br>
+                    <strong>اسم المتبرع:</strong> {{ $donation->user ? $donation->user->name : 'مجهول' }}<br>
+                    <strong>مبلغ التبرع:</strong> {{ $donation->amount }}<br>
+                    <strong>تاريخ التبرع:</strong> {{ $donation->created_at->format('Y-m-d') }}<br>
+                    <strong>حالة التبرع:</strong> 
+                    @if ($donation->status === 'pending')
+                        معلق
+                    @elseif ($donation->status === 'confirmed')
+                        مقبول
+                    @elseif ($donation->status === 'rejected')
+                        مرفوض
+                    @endif
+                    <br>
                 </p>
             </div>
         </div>
