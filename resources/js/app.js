@@ -1,4 +1,5 @@
 import * as bootstrap from 'bootstrap';
+// import './bootstrap.bundle.min.js';
 import './bootstrap';
 
 window.openReviewModal = function (donationId) {

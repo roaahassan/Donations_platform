@@ -1,9 +1,20 @@
-@extends('layouts.admin')
+
+@php
+    $layout = auth()->user()->role == 'admin' ? 'layouts.admin' : 'layouts.platform';
+@endphp
+
+@extends($layout)
 
 @section('content')
 <div class="container" dir="rtl">
     <h2 class="text-center mb-4">صفحة البروفايل</h2>
 
+    <div class="d-flex justify-content-end mb-3">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">تسجيل الخروج</button>
+        </form>
+    </div>
     <!-- تعديل البيانات الشخصية -->
     <div class="card mb-4">
         <div class="card-header">تعديل البيانات الشخصية</div>
@@ -30,21 +41,6 @@
             <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
             </form>
         </div>
-        {{-- <div class="card-body">
-            <form action="{{ route('profile.update') }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="mb-3">
-                    <label for="name" class="form-label">الاسم</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">البريد الإلكتروني</label>
-                    <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
-                </div>
-                <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
-            </form>
-        </div> --}}
     </div>
 
     <!-- عرض الإشعارات -->

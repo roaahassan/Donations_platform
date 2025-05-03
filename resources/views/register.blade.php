@@ -75,6 +75,7 @@
             text-decoration: none;
         }
     </style>
+        <link rel="icon" href="{{ asset(path: 'storage/logo.jpeg') }}" class="fav" type="image/jpeg">
 </head>
 <body>
     {{-- <div class="navbar">

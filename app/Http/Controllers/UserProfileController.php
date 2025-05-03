@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
+class UserProfileController extends Controller
 {
-    public function index()
+    /**
+     * عرض صفحة البروفايل.
+     */
+    public function profile()
     {
         return view('admin.profile');
     }
-public function update(Request $request)
-{
-    // Validate the incoming request data
+
+    /**
+     * تحديث بيانات البروفايل.
+     */
+    public function updateProfile(Request $request)
+    {
+        // Validate the incoming request data
     $validatedData = $request->validate([
         'email' => 'required|email|max:255|unique:users,email,' . auth()->id(),
         'phone' => 'required|string|max:15',
@@ -28,7 +37,6 @@ public function update(Request $request)
     ]);
 
     // Redirect back with a success message
-    return redirect()->route('profile.index')->with('success', 'تم تحديث البيانات الشخصية بنجاح.');
-}
-
+    return redirect()->route('user.profile')->with('success', 'تم البيانات الشخصية بنجاح.');
+    }
 }

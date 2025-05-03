@@ -13,7 +13,7 @@
         </ul>
     </div>
         @endif
-        <form action="{{ route('needs.update', $need->id) }}" method="POST">
+        <form action="{{ route('needs.update', $need->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -43,7 +43,10 @@
             
             <div class="form-group">
                 <label for="image_path">مسار الصورة</label>
-                <input type="text" name="image_path" id="image_path" class="form-control" value="{{ $need->image_path }}">
+                <input type="file" name="image_path" id="image_path" class="form-control">
+                @if ($need->image_path)
+                    <p>الصورة الحالية: <a href="{{ asset('storage/' . $need->image_path) }}" target="_blank">عرض الصورة</a></p>
+                @endif
             </div>
             <div class="form-group">
                 <label for="isUrgent">هل الحوجة عاجلة؟</label>

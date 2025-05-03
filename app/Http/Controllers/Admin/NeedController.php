@@ -71,11 +71,12 @@ class NeedController extends Controller
         'isUrgent' => 'boolean',
         ]);
 
-       
     // معالجة رفع الصورة إذا تم تقديمها
     $imagePath = null;
     if ($request->hasFile('image_path')) {
-        $imagePath = $request->file('image_path')->store('images', 'public');
+        $imageName = $request->file('image_path')->getClientOriginalName();
+        $imagePath = $request->file('image_path')->storeAs('storage', $imageName, 'public');
+        $imagePath = $imageName; // تخزين اسم الصورة فقط في قاعدة البيانات
     }
 
     // إنشاء الحوجة
@@ -103,31 +104,48 @@ class NeedController extends Controller
         return view('admin.needs.edit', compact('need'));
     }
 
-    public function update(Request $request, Need $need)
+    public function update(Request $request, $id)
     {
+        // التحقق من صحة البيانات
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'status' => 'required|string|in:pending,approved,rejected',
+            'status' => 'required|in:pending,approved,rejected',
             'amount' => 'required|numeric|min:0',
             'collected_amount' => 'nullable|numeric|min:0',
-            'image_path' => 'nullable|string',
-            'isUrgent' => 'boolean',
+            'image_path' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048', // التحقق من رفع الملف
+            'isUrgent' => 'nullable|boolean',
             'category' => 'required|string|max:255',
         ]);
-    
-        // Update the need
-        $need->update([
-            'user_id' => $need->user_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status,
-            'amount' => $request->amount,
-            'collected_amount' => $request->collected_amount,
-            'image_path' => $request->image_path,
-            'isUrgent' => $request->isUrgent ?? false,
-            'category' => $request->category,
-        ]);
+
+        // استرجاع الحوجة
+        $need = Need::findOrFail($id);
+
+        // تحديث البيانات
+        $need->title = $request->input('title');
+        $need->description = $request->input('description');
+        $need->status = $request->input('status');
+        $need->amount = $request->input('amount');
+        $need->collected_amount = $request->input('collected_amount');
+        $need->isUrgent = $request->input('isUrgent', 0); // القيمة الافتراضية 0
+        $need->category = $request->input('category');
+
+        // معالجة رفع الصورة
+        if ($request->hasFile('image_path')) {
+            // حذف الصورة القديمة إذا كانت موجودة
+            if ($need->image_path && \Storage::exists('public/' . $need->image_path)) {
+                \Storage::delete('public/' . $need->image_path);
+            }
+
+            // رفع الصورة الجديدة
+            $path = $request->file('image_path')->store('needs', 'public');
+            $need->image_path = $path;
+        }
+
+        // حفظ التعديلات
+        $need->save();
+
+        // إعادة التوجيه مع رسالة نجاح
         return redirect()->route('needs.index')->with('success', 'تم تحديث الحوجة بنجاح.');
     }
 

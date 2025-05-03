@@ -37,4 +37,9 @@ class LoginController extends Controller
             'email' => 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
         ]);
     }
+
+    protected function redirectTo()
+    {
+        return session()->get('url.intended', '/home'); // إعادة التوجيه إلى الرابط المخزن أو إلى الصفحة الرئيسية
+    }
 }

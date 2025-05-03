@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -58,9 +58,13 @@
 </head>
 <body>
     <header class="navbar">
-        <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo">
+            <span style="color: white; font-size: 1.5rem; font-weight: bold;">سواعد</span>
+        </div>
         <ul>
             <li><a href="#">اطلب</a></li>
+            <li><a href="{{ route('needs.user.index') }}">حوجات</a></li>
             <li><a href="#">مشاريعنا</a></li>
             <li><a href="#">عن الجمعية</a></li>
             <li><a href="#">اتصل بنا</a></li>
@@ -72,10 +76,14 @@
     </header>
 </head>
     <header style="background-color: #4CAF50; color: white; padding: 1rem 0; text-align: center;">
-        {{-- <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo"> --}}
-    <header style="background-color: #4CAF50; color: white; padding: 1rem 0; text-align: center;">
+        {{-- <img src="{{ asset('images/logo_2.jpeg') }}" alt="Logo" class="logo"> 
+    <header style="background-color: #4CAF50; color: white; padding: 1rem 0; text-align: center;"> 
         <h1>مرحبًا بكم في منصة سواعد للتبرعات</h1>
     </header>
+    --}}
+@extends('layouts.platform')
+
+@section('content')
     <main style="padding: 2rem;">
         <section style="margin-bottom: 2rem;">
             <h2 style="border-bottom: 2px solid #4CAF50; padding-bottom: 0.5rem;">من نحن</h2>
@@ -97,9 +105,10 @@
             @endif
         </section>      
     </main>
-    <footer style="background-color: #333; color: white; text-align: center; padding: 1rem 0; position: fixed; width: 100%; bottom: 0;">
+    @endsection
+    {{-- <footer style="background-color: #333; color: white; text-align: center; padding: 1rem 0; position: fixed; width: 100%; bottom: 0;">
         <p>&copy; {{ date('Y') }} .منصة سواعد جميع الحقوق محفوظة  </p>
     </footer>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
-</html>
+</html> --}}

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول</title>
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+    <link rel="icon" href="{{ asset(path: 'storage/logo.jpeg') }}" class="fav" type="image/jpeg">
 </head>
 <body>
     <style>
@@ -70,6 +71,7 @@
         <h2>تسجيل الدخول</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
+            <input type="hidden" name="intended" value="{{ session('url.intended') }}">
             <label for="email">البريد الإلكتروني:</label>
             <input type="email" id="email" name="email" required>
 

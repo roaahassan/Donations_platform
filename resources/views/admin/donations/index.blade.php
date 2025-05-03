@@ -126,9 +126,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('donations.reject') }}" method="POST">
+                <form action="{{ route('donations.reject', $donation->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="donation_id" id="rejectDonationId">
+                    <input type="hidden" name="donation_id" id="rejectDonationId" value="{{ $donation->id }}">
                     <div class="mb-3">
                         <label for="reason" class="form-label">سبب الرفض</label>
                         <textarea name="reason" id="reason" class="form-control" rows="3" required></textarea>

@@ -93,6 +93,8 @@ public function reject(Request $request)
 {
     $validatedData = $request->validate([
         'donation_id' => 'required|exists:donations,id',
+        'reason' => 'required|string|max:255',
+
     ]);
 
     $donation = Donation::findOrFail($validatedData['donation_id']);

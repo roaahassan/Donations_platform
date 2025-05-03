@@ -42,19 +42,11 @@
                 <label for="image_path">مسار الصورة</label>
                 <input type="file" name="image_path" id="image_path" class="form-control">
             </div>
-            {{-- <div class="form-group">
-                <label for="image_path">مسار الصورة</label>
-                <input type="text" name="image_path" id="image_path" class="form-control">
-            </div> --}}
-            {{-- <div class="form-group">
-                <label for="supp_doc">المستند الداعم</label>
-                <input type="text" name="supp_doc" id="supp_doc" class="form-control">
-            </div> --}}
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <label for="isUrgent">هل الحوجة عاجلة؟</label>
                 <input type="checkbox" name="isUrgent" id="isUrgent" value="1">
             </div>
-            <button type="submit" class="btn btn-primary">إضافة</button>
+            <button type="submit" class="btn btn-primary mt-3">إضافة</button>
         </form>
     </div>
 @endsection

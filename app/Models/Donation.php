@@ -22,5 +22,10 @@ class Donation extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
-
+    
+    // العلاقة مع الحساب البنكي
+    public function bankAccount()
+    {
+        return $this->belongsTo(BankAccount::class, 'account_id');
+    }
 }
