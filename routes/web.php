@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\NeedController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\DonateProcessController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DashboardController; // Ensure this class exists in the specified namespace
@@ -38,7 +39,12 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 // مسار صفحة البروفايل للمستخدم العادي
 Route::middleware(['auth'])->group(function () {
 Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
+//مسارات صفحة وعملية التبرع
+Route::get('donate/{needId}', [DonateProcessController::class, 'showDonationPage'])->name('donate.show');
+Route::post('donate', [DonateProcessController::class, 'storeDonation'])->name('donation.store');
 });
+
+
 
 // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 // Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
@@ -85,10 +91,10 @@ Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 
 Route::get('/needs/list', [ShowNeedsController::class, 'index'])->name('needs.user.index');
 // Route::get('/needs/{id}/show', [ShowNeedsController::class, 'show'])->name('needs.user.show');
 // Route::get('/needs/details', action: [ShowNeedsController::class, 'showNeeddetails'])->name('needs.show.details');
-Route::get('/needs/{id}/donate', [ShowNeedsController::class, 'donate'])
-    ->name('needs.user.donate')
-    ->middleware('auth');
-Route::post('/needs/{id}/donate', [ShowNeedsController::class, 'processDonation'])->name('needs.user.process_donation');
+// Route::get('/needs/{id}/donate', [ShowNeedsController::class, 'donate'])
+//     ->name('needs.user.donate')
+//     ->middleware('auth');
+// Route::post('/needs/{id}/donate', [ShowNeedsController::class, 'processDonation'])->name('needs.user.process_donation');
 
 Route::get('/admin/register', [AdminController::class, 'showAdminRegisterForm'])->name('admin.register.form');
 Route::post('/admin/register', [AdminController::class, 'registerAdmin'])->name('admin.register');

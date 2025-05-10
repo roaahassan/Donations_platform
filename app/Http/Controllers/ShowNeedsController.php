@@ -29,9 +29,10 @@ class ShowNeedsController extends Controller
 
         // استرجاع النتائج مع التصفية
         $needs = $needs->get();
-
+        // dd($needs); 
         // استرجاع الحسابات البنكية
         $bankAccounts = BankAccount::all();
+        
 
         // تمرير الحوجات والحسابات البنكية إلى الـ view
         return view('show_needs', compact('needs', 'bankAccounts'));

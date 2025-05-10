@@ -17,7 +17,7 @@
             font-size: 1rem;
         }
     </style>
-        <link rel="icon" href="{{ asset(path: 'storage/logo.jpeg') }}" class="fav" type="image/jpeg">
+        <link rel="icon" href="{{ asset(path: 'storage/greenLogo.jpeg') }}" class="fav" type="image/jpeg">
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div class="d-flex flex-grow-1">

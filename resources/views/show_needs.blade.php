@@ -65,7 +65,7 @@
                         @else
                             <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal-{{ $need->id }}">عرض التفاصيل</a>
                             {{-- <a href="{{ route('needs.show.details', $need->id) }}" class="btn btn-info btn-sm">عرض التفاصيل</a> --}}
-                            <a href="{{ route('needs.user.donate', $need->id) }}" class="btn btn-success btn-sm">تبرع الآن</a>
+                            <a href="{{ route('donate.show', $need->id) }}" class="btn btn-success btn-sm">تبرع الآن</a>
                         @endif
                         <!-- Modal -->
 <div class="modal fade" id="detailsModal-{{ $need->id }}" tabindex="-1" aria-labelledby="detailsModalLabel-{{ $need->id }}" aria-hidden="true">
@@ -84,20 +84,21 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                <a href="{{ route('needs.user.donate', $need->id) }}" class="btn btn-success">تبرع الآن</a>
+                <a href="{{ route('donate.show', $need->id) }}" class="btn btn-success">تبرع الآن</a>
             </div>
         </div>
     </div>
 </div>  {{-- modal end --}}
 
-<!-- donation Modal -->
+{{-- <!-- donation Modal -->
 <div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form method="POST" action="{{ route('needs.user.process_donation', $need->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <a href="{{ route('needs.user.donate', $need->id) }}" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#donateModal">تبرع الآن</a>                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                    <a href="{{ route('needs.user.donate', $need->id) }}" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#donateModal">تبرع الآن</a>                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
@@ -133,7 +134,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
                     </div>
                 </div>

@@ -20,9 +20,6 @@
         main {
             flex: 1;
         }
-        .fw-bold:hover {
-            color: rgba(236, 146, 12, 0.849)
-        }
         .navbar-brand {
             display: flex;
             align-items: center;
@@ -69,10 +66,10 @@
             background-color: transparent;
         }
         
-        /* .navbar-nav .nav-link {
+        .navbar-nav .nav-link {
             margin: 0 10px;
             font-weight: 500;
-        } */
+        }
         .auth-links a {
             margin-left: 5px;
             font-weight: 500;
@@ -116,7 +113,7 @@
             padding: 5px;
         }
     </style>
-    <link rel="icon" href="{{ asset(path: 'storage/logo.jpeg') }}" class="fav" type="image/jpeg">
+    <link rel="icon" href="{{ asset(path: 'storage/greenLogo.jpeg') }}" class="fav" type="image/jpeg">
 
 </head>
 <body>
@@ -126,8 +123,8 @@
         <div class="container d-flex justify-content-between align-items-center">
             {{-- الشعار واسم المنصة --}}
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <img src="{{ asset('storage/logo.jpeg') }}" alt="شعار المنصة" class="logo">
-                <span class="fw-bold">سواعد</span>
+                <img src="{{ asset('storage/greenLogo.jpeg') }}" alt="شعار المنصة" class="logo">
+                {{-- <span class="fw-bold">سواعد</span> --}}
             </a>
 
             {{-- الروابط --}}

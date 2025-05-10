@@ -38,8 +38,22 @@ class LoginController extends Controller
         ]);
     }
 
-    protected function redirectTo()
+    // protected function redirectTo()
+    // {
+    //     return session()->get('url.intended', '/home'); // إعادة التوجيه إلى الرابط المخزن أو إلى الصفحة الرئيسية
+    // }
+
+    protected function authenticated(Request $request, $user)
     {
-        return session()->get('url.intended', '/home'); // إعادة التوجيه إلى الرابط المخزن أو إلى الصفحة الرئيسية
+        
+            // تحقق مما إذا كان هناك معرف حوجة مخزن في الجلسة
+            if (session()->has('redirect_to_donation')) {
+                $needId = session('redirect_to_donation');
+                session()->forget('redirect_to_donation'); // احذف القيمة من الجلسة
+                return redirect()->route('donate.show', ['needId' => $needId]);
+            }
+        
+            // إذا لم يكن هناك إعادة توجيه، أعد المستخدم إلى الصفحة الرئيسية
+            return redirect()->intended('/'); // يعيد المستخدم إلى الصفحة التي حاول الوصول إليها
     }
 }

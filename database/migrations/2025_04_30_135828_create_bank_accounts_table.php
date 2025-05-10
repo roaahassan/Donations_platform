@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bank_accounts', function (Blueprint $table) {
-            $table->id();
-            $table->string('bank_name'); // تصحيح srting إلى string
-            $table->string('account_no'); // تصحيح srting إلى string
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('bank_accounts')) {
+            Schema::create('bank_accounts', function (Blueprint $table) {
+                $table->id();
+                $table->string('bank_name');
+                $table->string('account_no');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
