@@ -25,10 +25,23 @@ class AdminController extends Controller
         // التحقق من صحة البيانات
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string|max:10|unique:users,phone',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
             'security_code' => 'required|string', // رمز الحماية
+        ], [
+            'name.required' => 'الاسم مطلوب',
+            'phone.required' => 'رقم الهاتف مطلوب',
+            'phone.max' => 'رقم الهاتف يجب أن يكون 10 أرقام',
+            'phone.unique' => 'رقم الهاتف مستخدم بالفعل',
+            'email.required' => 'البريد الإلكتروني مطلوب',
+            'email.email' => 'البريد الإلكتروني غير صالح',
+            'email.unique' => 'البريد الإلكتروني مستخدم بالفعل',
+            'password.required' => 'كلمة المرور مطلوبة',
+            'password.min' => 'كلمة المرور يجب أن تكون على الأقل 6 أحرف',
+            'password.confirmed' => 'تأكيج كلمة المرور غير مطابق .'
+            'password_confirmation.required' => 'الرجاء ادخال تأكيد كلمة المرور',
         ]);
 
         // التحقق من رمز الحماية

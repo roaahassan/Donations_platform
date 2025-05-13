@@ -25,7 +25,7 @@ class Need extends Model
         'category',
     ];
     public function donations() {
-        return $this->hasMany(Donation::class);
+        return $this->hasMany(Donation::class, 'need_id');
     }
     
     public function users() {

@@ -72,11 +72,21 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <input type="hidden" name="intended" value="{{ session('url.intended') }}">
+            
             <label for="email">البريد الإلكتروني:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+
+            @error('email')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
 
             <label for="password">كلمة المرور:</label>
             <input type="password" id="password" name="password" required>
+
+            @error('password')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+            
 
             <button type="submit">تسجيل الدخول</button>
         </form>
@@ -84,5 +94,23 @@
             <p>ليس لديك حساب؟ <a href="{{ route('register') }}">إنشاء حساب</a></p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const needId = localStorage.getItem('redirect_to_donation');
+            if (needId) {
+                // أضف معرف الحوجة إلى نموذج تسجيل الدخول
+                const loginForm = document.querySelector('form');
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'redirect_to_donation';
+                hiddenInput.value = needId;
+                loginForm.appendChild(hiddenInput);
+
+                // احذف معرف الحوجة من Local Storage بعد إضافته إلى النموذج
+                localStorage.removeItem('redirect_to_donation');
+            }
+        });
+    </script>
 </body>
 </html>

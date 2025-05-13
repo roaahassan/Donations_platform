@@ -114,7 +114,6 @@
         }
     </style>
     <link rel="icon" href="{{ asset(path: 'storage/greenLogo.jpeg') }}" class="fav" type="image/jpeg">
-
 </head>
 <body>
 

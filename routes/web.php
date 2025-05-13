@@ -20,9 +20,20 @@ use App\Http\Controllers\Admin\DashboardController; // Ensure this class exists 
 //     return view('welcome');
 // });
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
+
+// إضافة route جديد لصفحة check...
+Route::get('/check-redirect', function () {
+    return view('check_redirect');
+});
+
+// إضافة route جديد لصفحة policies...
+Route::get('/policies', function () {
+    return view('policies');
+})->name('policies');
+
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
@@ -41,7 +52,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
 //مسارات صفحة وعملية التبرع
 Route::get('donate/{needId}', [DonateProcessController::class, 'showDonationPage'])->name('donate.show');
-Route::post('donate', [DonateProcessController::class, 'storeDonation'])->name('donation.store');
+Route::post('donate/store', [DonateProcessController::class, 'storeDonation'])->name('donation.store');
+Route::post('donate/store-initial', [DonateProcessController::class, 'storeInitial'])->name('donation.storeInitial'); // أضف هذا السطر
+Route::get('/donation/{donation}/receipt', [DonateProcessController::class, 'showReceiptForm'])->name('donation.showReceiptForm');
+Route::post('/donation/{donation}/store-receipt', [DonateProcessController::class, 'storeReceipt'])->name('donation.storeReceipt');
 });
 
 

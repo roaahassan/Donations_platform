@@ -67,20 +67,32 @@
             </style>
             <div class="mb-3">
                 <label for="name" class="form-label">الاسم</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="أدخل اسمك" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="أدخل اسمك" value="{{ old('name') }}" required>
             </div>
+            @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror 
             <div class="mb-3">
                 <label for="phone" class="form-label">رقم الهاتف</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="أدخل رقم هاتفك" value="{{ old('phone') }}" required>
             </div>
+            @error('phone')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror 
             <div class="mb-3">
                 <label for="email" class="form-label">البريد الإلكتروني</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" value="{{ old('email') }}" required>
             </div>
+            @error('email')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror 
             <div class="mb-3">
                 <label for="password" class="form-label">كلمة المرور</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
             </div>
+            @error('password')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror 
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="********" required>

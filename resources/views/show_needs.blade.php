@@ -64,8 +64,14 @@
                             </div>
                         @else
                             <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailsModal-{{ $need->id }}">عرض التفاصيل</a>
-                            {{-- <a href="{{ route('needs.show.details', $need->id) }}" class="btn btn-info btn-sm">عرض التفاصيل</a> --}}
-                            <a href="{{ route('donate.show', $need->id) }}" class="btn btn-success btn-sm">تبرع الآن</a>
+                            {{-- @if(Auth::check())
+                                <!-- إذا كان المستخدم مسجل الدخول -->
+                                <a href="{{ route('donate.show', $need->id) }}" class="btn btn-success btn-sm">تبرع الآن</a>
+                            @else
+                                <!-- إذا لم يكن المستخدم مسجل الدخول -->
+                                <a href="{{ route('login') }}" class="btn btn-success btn-sm" onclick="saveNeedIdToLocalStorage({{ $need->id }})">تبرع الآن</a>
+                            @endif --}}
+                            <button onclick="goToDonate({{ $need->id }})" class="btn btn-success btn-sm">تبرع الآن</button>
                         @endif
                         <!-- Modal -->
 <div class="modal fade" id="detailsModal-{{ $need->id }}" tabindex="-1" aria-labelledby="detailsModalLabel-{{ $need->id }}" aria-hidden="true">
@@ -137,6 +143,19 @@
 </div> --}}
 
                     </div>
+                    <script>
+                        function goToDonate(needId) {
+                            // نحفظ المعرف والمنطق
+                            localStorage.setItem('pending_donation_need_id', needId);
+                            localStorage.setItem('was_in_donate_page', 'true');
+                    
+                            @auth
+                                window.location.href = '/donate/' + needId;
+                            @else
+                                window.location.href = '/login';
+                            @endauth
+                        }
+                    </script>
                 </div>
             </div>
         @endforeach
