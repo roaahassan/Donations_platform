@@ -20,13 +20,13 @@ use App\Http\Controllers\Admin\DashboardController; // Ensure this class exists 
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 })->name('home');
 
 // إضافة route جديد لصفحة check...
 Route::get('/check-redirect', function () {
-    return view('check_redirect');
+    return view('check-redirect');
 });
 
 // إضافة route جديد لصفحة policies...

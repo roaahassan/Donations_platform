@@ -21,7 +21,7 @@
 
                 window.location.href = '/donate/' + needId;
             } else {
-                window.location.href = '/';
+                window.location.href = '/home';
             }
         });
     </script>

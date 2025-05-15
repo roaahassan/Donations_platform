@@ -30,15 +30,19 @@ class LoginController extends Controller
         // محاولة تسجيل الدخول
         if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
             $request->session()->regenerate();
+            
+            $user = Auth::user();
 
-            // إعادة التوجيه إلى الصفحة المطلوبة
-            return redirect()->intended('/');
+        if($user->role === 'admin') {
+            return redirect()->intended('/admin/dashboard');
+        } else {
+            return redirect('/check-redirect');
         }
-
+    }
         // التحقق من وجود البريد الإلكتروني
         // if (!Auth::attempt(['email' => $request->email])) {
         //     return back()->withErrors([
-        //         'email' => 'البريد الإلكتروني غير موجود.',
+        //         'email' => 'البريد الإلكتروني غير موجود.'
         //     ])->withInput();
         // }
         if (!\App\Models\User::where('email', $request->email)->exists()) {
