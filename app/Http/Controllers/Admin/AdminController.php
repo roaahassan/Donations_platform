@@ -28,7 +28,6 @@ class AdminController extends Controller
             'phone' => 'required|string|max:10|unique:users,phone',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            // 'password_confirmation' => 'required',
             'security_code' => 'required|string', // رمز الحماية
         ], [
             'name.required' => 'الاسم مطلوب',
@@ -41,7 +40,6 @@ class AdminController extends Controller
             'password.required' => 'كلمة المرور مطلوبة',
             'password.min' => 'كلمة المرور يجب أن تكون على الأقل 6 أحرف',
             'password.confirmed' => 'تأكيج كلمة المرور غير مطابق .',
-            // 'password_confirmation.required' => 'الرجاء ادخال تأكيد كلمة المرور',
         ]);
 
         // التحقق من رمز الحماية

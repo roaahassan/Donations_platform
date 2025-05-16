@@ -36,6 +36,11 @@ class LoginController extends Controller
         if($user->role === 'admin') {
             return redirect()->intended('/admin/dashboard');
         } else {
+            // تحقق مما إذا كان المستخدم يحاول التبرع
+            if ($request->session()->has('redirect_to_donation')) {
+                $needId = $request->session()->pull('redirect_to_donation');
+                return redirect()->route('donate.show', ['needId' => $needId]);
+            }
             return redirect('/check-redirect');
         }
     }

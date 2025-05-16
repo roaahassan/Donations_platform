@@ -52,10 +52,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
 //مسارات صفحة وعملية التبرع
 Route::get('donate/{needId}', [DonateProcessController::class, 'showDonationPage'])->name('donate.show');
-Route::post('donate/store', [DonateProcessController::class, 'storeDonation'])->name('donation.store');
-Route::post('donate/store-initial', [DonateProcessController::class, 'storeInitial'])->name('donation.storeInitial'); // أضف هذا السطر
-Route::get('/donation/{donation}/receipt', [DonateProcessController::class, 'showReceiptForm'])->name('donation.showReceiptForm');
-Route::post('/donation/{donation}/store-receipt', [DonateProcessController::class, 'storeReceipt'])->name('donation.storeReceipt');
+Route::post('donate/store', [DonateProcessController::class, 'storeDonation'])->name('donate.store');
+// Route::post('donate/store-initial', [DonateProcessController::class, 'storeInitial'])->name('donation.storeInitial'); // أضف هذا السطر
+// Route::get('/donation/{donation}/receipt', [DonateProcessController::class, 'showReceiptForm'])->name('donation.showReceiptForm');
+// Route::post('/donation/{donation}/store-receipt', [DonateProcessController::class, 'storeReceipt'])->name('donation.storeReceipt');
 });
 
 

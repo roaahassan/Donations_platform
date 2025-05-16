@@ -146,6 +146,10 @@
                     <script>
                         function goToDonate(needId) {
                             // نحفظ المعرف والمنطق
+                            
+                            //const needId = this.getAttribute('data-need-id'); 
+                            // افترض أن الزر يحتوي على معرف الحاجة
+
                             localStorage.setItem('pending_donation_need_id', needId);
                             localStorage.setItem('was_in_donate_page', 'true');
                     
