@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\apply_request_controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LoginController;
@@ -33,6 +34,9 @@ Route::get('/check-redirect', function () {
 Route::get('/policies', function () {
     return view('policies');
 })->name('policies');
+
+Route::get('/need-request/create',[apply_request_controller::class,'create'])->name('need_requests.create');
+Route::post('/need_request/store',[apply_request_controller::class,'store'])->name('need_requests.store');
 
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');

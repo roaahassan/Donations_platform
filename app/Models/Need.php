@@ -21,6 +21,7 @@ class Need extends Model
         'image_path',
         'supp_doc',
         'isUrgent',
+        'national_id',
         'rqst_date',
         'category',
     ];

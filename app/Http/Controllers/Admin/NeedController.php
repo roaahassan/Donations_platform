@@ -88,7 +88,7 @@ class NeedController extends Controller
         'amount' => $request->amount,
         'image_path' => $imagePath,
         'isUrgent' => $request->isUrgent ?? false,
-        'rqst_date' => now(),
+        // 'rqst_date' => now(),
     ]);
 
     return redirect()->route('needs.index')->with('success', 'تمت إضافة الحوجة بنجاح.');

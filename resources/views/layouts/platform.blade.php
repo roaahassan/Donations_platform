@@ -125,7 +125,7 @@
                 <img src="{{ asset('storage/greenLogo.jpeg') }}" alt="شعار المنصة" class="logo">
                 {{-- <span class="fw-bold">سواعد</span> --}}
             </a>
-
+            
             {{-- الروابط --}}
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -136,7 +136,7 @@
                         <a class="nav-link" href="{{ route('needs.user.index') }}">حوجات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">مشاريع</a>
+                        <a class="nav-link" href="{{ route('need_requests.create') }}">أطلب</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">عن سواعد</a>
