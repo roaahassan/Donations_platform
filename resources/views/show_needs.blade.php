@@ -192,3 +192,39 @@
         }
     </style>
 @endsection
+
+@section('styles')
+    <style>
+        /* تقليل ارتفاع البطاقات */
+        .card.h-100 {
+            height: 340px; /* يمكنك التعديل حسب الحاجة */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-img-top {
+            height: 140px !important;
+            object-fit: cover;
+        }
+        .card-body {
+            flex: 1 1 auto;
+            overflow: hidden;
+        }
+        /* تأثير fade-in عند اكتمال الحوجة */
+        .fade-in-message {
+            animation: fadeIn 2s ease-in-out;
+            display: block;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+@endsection

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية - منصة سواعد </title>
+    <title> منصة سواعد </title>
     <!-- ربط ملف CSS المحلي من Bootstrap -->
    {{-- <link href="{{ asset('bootstrap/css/bootstrap.rtl.min.css') }}" rel="stylesheet">  --}}
    
@@ -139,10 +139,10 @@
                         <a class="nav-link" href="{{ route('need_requests.create') }}">أطلب</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">عن سواعد</a>
+                        <a class="nav-link" href="about">عن سواعد</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">اتصل بنا</a>
+                        <a class="nav-link" href="contact">اتصل بنا</a>
                     </li>
                     @if (auth()->check())
                         <li class="nav-item">

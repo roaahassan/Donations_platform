@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\apply_request_controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LoginController;
@@ -13,7 +12,9 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\DonateProcessController;
 use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\apply_request_controller;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminNeedRequestController;
 use App\Http\Controllers\Admin\DashboardController; // Ensure this class exists in the specified namespace
 
 
@@ -34,6 +35,15 @@ Route::get('/check-redirect', function () {
 Route::get('/policies', function () {
     return view('policies');
 })->name('policies');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 
 Route::get('/need-request/create',[apply_request_controller::class,'create'])->name('need_requests.create');
 Route::post('/need_request/store',[apply_request_controller::class,'store'])->name('need_requests.store');
@@ -96,7 +106,10 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
     Route::post('donations/reject', [DonationController::class, 'reject'])->name('donations.reject');
     Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donations.show');
     
-    // Route::get('/requests', [AdminController::class, 'requests'])->name('admin.requests');
+    Route::get('/admin/need-requests', [AdminNeedRequestController::class, 'index'])->name('admin.need_requests');
+    Route::post('/admin/need-requests/{id}/review', [AdminNeedRequestController::class, 'review'])->name('admin.need_requests.review');
+    Route::post('/admin/need-requests/{id}/accept', [AdminNeedRequestController::class, 'accept'])->name('admin.need_requests.accept');
+    Route::post('/admin/need-requests/{id}/reject', [AdminNeedRequestController::class, 'reject'])->name('admin.need_requests.reject');
     
 
 // // notifications
