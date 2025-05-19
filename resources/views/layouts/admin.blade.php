@@ -35,7 +35,7 @@
                     <a class="nav-link text-white" href="{{ route('dashboard.donations') }}">إدارة التبرعات</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a class="nav-link text-white" href="{{ route('admin.requests') }}">إدارة طلبات الحوجات</a> --}}
+                    <a class="nav-link text-white" href="{{ route('admin.need_requests') }}">إدارة طلبات الحوجات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('profile.index') }}">البروفايل</a>

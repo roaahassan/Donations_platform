@@ -31,19 +31,19 @@
             border: none !important;
         }
         .navbar-brand span {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             font-weight: bold;
             color: white;
         }
         .navbar {
             background-color: rgb(13, 95, 13) !important;
         }
-        footer {
+        /* footer {
             background-color: black !important;
             color: white !important;
             text-align: center;
             padding: 1rem 0;
-        }
+        } */
             .auth-links a {
                 color: white;
                 background: none;
@@ -69,15 +69,21 @@
         .navbar-nav .nav-link {
             margin: 0 10px;
             font-weight: 500;
+            font-size: 1.2rem; /* زيادة حجم الخط */
+            font-family: 'Tajawal', sans-serif;
         }
         .auth-links a {
             margin-left: 5px;
             font-weight: 500;
+            font-size: 1.2rem; /* زيادة حجم الخط */
+            padding: 0 5px;
+            font-family: 'Tajawal', sans-serif;
         }
         .logo {
-            height: 40px;
+            height: 50px;
+            width: 50px; /* زيادة حجم الشعار */
             margin-left: 10px;
-            border-radius: 60%
+            border-radius: 50%
         }
         .fav{
             border-radius: 60%
@@ -170,10 +176,17 @@
     </main>
     
     {{-- الفوتر --}}
-    <footer style="background-color: black; color: white; text-align: center; padding: 1rem 0; position: relative; width: 100%; bottom: 0;"> 
-        جميع الحقوق محفوظة منصة سواعد  
-    </footer>
-
+    <footer class=" py-3 mt-3"  style="background-color: rgb(13, 95, 13);">
+    <div class="container text-light text-center">
+      <p class="mb-2">&copy; منصة سواعد جميع الحقوق محفوظة 2025</p>
+      <div class="d-flex justify-content-center gap-3">
+        <i class="bi bi-twitter" style="margin-right: 10px;"></i>
+        <i class="bi bi-whatsapp"style="margin-right: 10px;"></i>
+        <i class="bi bi-messenger"style="margin-right: 10px;"></i>
+        <i class="bi bi-facebook"style="margin-right: 10px;"></i>
+     </div>
+   </div>
+  </footer>
     {{-- ربط سكريبت Bootstrap المحلي --}}
     {{-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>--}}  
 </body> 
